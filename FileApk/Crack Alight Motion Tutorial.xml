@@ -1,0 +1,82 @@
+From this tutorial you'll learn how you can unlock premium features on Alight Motion !
+
+Credit : CyberFox Reversing made by Kyuzo Kakumi Dtz
+
+I created this tutorial for newbies who are not familiar with reverse engineering/modding. This method will also allow you to unlock older versions of Alight Motion, but it may not work on the latest version because the code location is changed with every update.
+
+
+REMOVE WATERMARK & UNLOCK EFFECT
+
+[ SEARCH ]
+
+Lcom/alightcreative/account/LicenseBenefit;
+
+    invoke-interface \{(.*), (.*)}\, Ljava/util/Set;->contains\(Ljava/lang/Object;\)Z
+
+    move-result (.*)
+    
+[ REPLACE ]
+
+Lcom/alightcreative/account/LicenseBenefit;
+
+    invoke-interface {$1, $2}, Ljava/util/Set;->contains\(Ljava/lang/Object;\)Z
+
+    const/4 $1, 0x1
+    
+    
+    
+    
+
+BYPASS LOCKED PREMIUM EFFECTS WHEN EXPORT
+
+[ SEARCH ]
+
+getUnlockedFeatures
+
+[ REPLACE ]
+
+Ljava/util/Set;->contains(Ljava/lang/Object;)Z
+
+    move-result p1 > const/4 p1, 0x1
+
+
+
+
+
+REMOVE EXPORT BUTTON ADS TEXT
+
+[ SEARCH ]
+
+"binding.exportWatchAnAdText"
+
+[ REPLACE }
+
+Scroll down and change in boolean Z place, eg, move-result v0 to const/4 v0, 0x0
+
+
+
+
+
+REMOVE PAYWALL SCREEN, ADS & UNLOCK PROJECT PACKAGE SHARING
+
+
+[ SEARCH ]
+
+"paywall"
+
+[ REPLACE ]
+
+Ljava/util/Set;->equal(Ljava/lang/Object;)Z below this line you'll see (move-result v0), change it to (const/4 v0, 0x0)
+
+
+
+
+Note !
+
+This applies only to certain features. If you want to unlock all premium features, please watch the tutorial video carefully and follow the steps precisely to avoid any errors or bugs.
+
+
+
+
+
+DONE ✅
